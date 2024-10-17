@@ -40,6 +40,7 @@ if ($result->num_rows >= 1) {
     <link rel="icon" type="image/png" href="assets/images/favicomatic/favicon-32x32.png" sizes="32x32"/>
     <link rel="icon" type="image/png" href="assets/images/favicomatic/favicon-16x16.png" sizes="16x16"/>
     <link rel="stylesheet" href="assets/styles/style.css"/>
+    <link rel="stylesheet" href="assets/build/css/intlTelInput.css" />
 </head>
 
 <body>
@@ -82,15 +83,28 @@ if ($result->num_rows >= 1) {
                             </span>
                         </div>
                     </div>
-                    <br>
-                    <div class="columns is-centered is-mobile">
+                    <div class="field">
                         <div class="control">
-                            <label class="checkbox">
-                                <input type="checkbox" required>
-                                I agree to the <a href="policy.php">Terms of Use</a>
-                            </label>
+                            <input class="input" type="tel" id="phone" name="phone" onkeydown="return onlyNumberKey(event)" required />
                         </div>
                     </div>
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input class="input" type="number" id="form_font" name="room" placeholder="Room Number" required>
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-door-closed"></i>
+                            </span>
+                        </div>
+                    </div>
+<!--                    <br>-->
+<!--                    <div class="columns is-centered is-mobile">-->
+<!--                        <div class="control">-->
+<!--                            <label class="checkbox">-->
+<!--                                <input type="checkbox" required>-->
+<!--                                I agree to the <a href="policy.php">Terms of Use</a>-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <br>
                     <div class="buttons is-centered">
                         <button class="button is-link">Connect</button>
@@ -100,5 +114,26 @@ if ($result->num_rows >= 1) {
         </section>
     </div>
 </div>
+<script src="assets/build/js/intlTelInputWithUtils.min.js"></script>
+<script>
+    const input = document.querySelector("#phone");
+    const iti = window.intlTelInput(input, {
+        initialCountry: "pk",
+        nationalMode: true,
+        hiddenInput: () => ({
+            phone: "full_phone",
+            country: "country_code"
+        }),
+    });
+</script>
+<script>
+    function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
 </body>
 </html>
