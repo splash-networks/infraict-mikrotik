@@ -31,7 +31,7 @@ if ($_SESSION["user_type"] == "new") {
     PRIMARY KEY (`id`)
     )");
 
-    mysqli_query($con,"INSERT INTO `$table_name` (firstname, lastname, email, phone, room, mac, ip, last_updated) VALUES ('$fname', '$lname', '$email', '$phone', '$room', '$mac', NOW())");
+    mysqli_query($con,"INSERT INTO `$table_name` (firstname, lastname, email, phone, room, mac, last_updated) VALUES ('$fname', '$lname', '$email', '$phone', '$room', '$mac', NOW())");
 }
 
 mysqli_close($con);
