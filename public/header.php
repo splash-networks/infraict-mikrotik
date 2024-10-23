@@ -12,3 +12,5 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $business_name = $_SERVER['BUSINESS_NAME'];
+
+date_default_timezone_set("Asia/Karachi");
